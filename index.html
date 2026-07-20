@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PokerSingularity — Your Room. Your Regulars. Your Cut.</title>
+<title>PokerSingularity — Buy a Room. Host the Game. Get Paid.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -212,13 +212,13 @@
     </div>
 
     <div class="eyebrow">A Poker-Centric Gig Economy</div>
-    <h1 class="headline">You already own<br>the room.<br><em>Tonight it starts paying you.</em></h1>
-    <p class="sub">You have the crowd, the cigars, the regulars who stay for hours. PokerSingularity turns your lounge into a live poker room — and every seat that fills pays <b>you</b>, the Host. <b>No car. No miles. No strangers. No app running your life.</b> Just your room, your people, your cut.</p>
+    <h1 class="headline">Buy a room.<br>Host the game.<br><em>Get paid.</em></h1>
+    <p class="sub">PokerSingularity is the gig economy for poker. No casino. No card room. No table to buy or dealer to hire. You get a room, you host the games, and <b>every seat that fills pays you</b> — the Host. Run it from your phone, on your nights, on your terms. <b>No car, no miles, no strangers, no boss.</b> Just your room, your table, your cut.</p>
 
     <div class="tenant-bar">
       <div>
-        <div class="who" id="tenantName">Ember &amp; Ash Cigar Lounge</div>
-        <div class="loc" id="tenantLoc">Dallas, TX</div>
+        <div class="who" id="tenantName">Becky R.</div>
+        <div class="loc" id="tenantLoc">PokerSingularity Host</div>
       </div>
       <div class="sep"></div>
       <div class="role">Host · 1 Room · 10 Tables · 80 Seats</div>
@@ -341,9 +341,9 @@
       <div class="specs">
         <div class="spec"><span><b>No miles on your car.</b> No gas, no wear, no depreciation eating your pay.</span></div>
         <div class="spec"><span><b>No insurance to carry.</b> No liability riding shotgun, no rideshare coverage.</span></div>
-        <div class="spec"><span><b>No strangers in your back seat.</b> Just your own regulars, in your own room.</span></div>
-        <div class="spec"><span><b>No app running your life.</b> You set the nights, you set the hours.</span></div>
-        <div class="spec"><span><b>Nothing to build.</b> The platform runs the game — you just run the room.</span></div>
+        <div class="spec"><span><b>No strangers in your back seat.</b> Host from your phone, wherever you are.</span></div>
+        <div class="spec"><span><b>No boss, no app running your life.</b> You set the nights, you set the hours.</span></div>
+        <div class="spec"><span><b>Nothing to build, nothing to buy but the room.</b> The platform runs the game.</span></div>
         <div class="spec"><span><b>12.5% of every filled table.</b> Locked for life, paid the same every time.</span></div>
       </div>
 
@@ -369,9 +369,9 @@
 <script>
 /* ============================================================
    SWAP THESE TWO LINES BEFORE A MEETING — that's the whole job.
-   Put the prospect's real lounge in TENANT, point CTA at your inbox.
+   Put the prospect's real name in TENANT, point CTA at your inbox.
    ============================================================ */
-const TENANT   = { name: "Ember & Ash Cigar Lounge", loc: "Dallas, TX" };
+const TENANT   = { name: "Becky R.", loc: "PokerSingularity Host" };  // <-- put the prospect's name here (Becky, Jennifer, Dave, or the real person)
 const CTA_INBOX = "hosts@pokersingularity.com";   // <-- wire your real inbox
 /* ============================================================ */
 
@@ -388,7 +388,7 @@ document.getElementById('tenantLoc').textContent  = TENANT.loc;
 document.getElementById('ctaBtn').href =
   "mailto:" + CTA_INBOX +
   "?subject=" + encodeURIComponent("Claim a Room — " + TENANT.name) +
-  "&body=" + encodeURIComponent("I want to claim a Host room for " + TENANT.name + ". Please send next steps.");
+  "&body=" + encodeURIComponent("I want to claim my room and become a PokerSingularity Host. Please send next steps.");
 
 // --- build 10 tables ---
 const roomEl = document.getElementById('room');
