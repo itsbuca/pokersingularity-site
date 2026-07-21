@@ -83,22 +83,36 @@
   .room-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);font-weight:700;margin:6px 2px 12px}
   .tables{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
   .tbl{
-    aspect-ratio:1/.92;border:1px solid var(--line);border-radius:12px;
-    background:var(--white);position:relative;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;gap:6px;transition:.25s;overflow:hidden;
-    box-shadow:0 1px 2px rgba(0,0,0,.03);
+    border:1px solid var(--line);border-radius:12px;background:var(--white);
+    padding:11px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:9px;
+    transition:.25s;box-shadow:0 1px 2px rgba(0,0,0,.03);
   }
-  .tbl .felt{
-    width:38px;height:28px;border-radius:40%/50%;
-    background:radial-gradient(circle at 50% 40%, #1f5a34, #123f22);
-    border:1px solid rgba(0,0,0,.12);transition:.3s;
-  }
-  .tbl.on{border-color:var(--red);background:linear-gradient(180deg,rgba(157,21,35,.09),var(--white));box-shadow:0 6px 20px -8px var(--glow)}
-  .tbl.on .felt{background:radial-gradient(circle at 50% 40%, #279a52, #157a3a);box-shadow:0 0 14px -2px rgba(39,154,82,.5)}
   .tbl .tnum{font-size:11px;font-weight:700;color:var(--ash);letter-spacing:.06em}
-  .tbl.on .tnum{color:var(--ink)}
-  .tbl .cut{position:absolute;bottom:6px;font-size:10px;font-weight:800;color:var(--green);opacity:0;transform:translateY(4px);transition:.3s}
-  .tbl.on .cut{opacity:1;transform:none}
+  .tbl.full .tnum,.tbl.partial .tnum{color:var(--ink)}
+  /* oval poker table */
+  .ptable{
+    position:relative;width:72px;height:40px;border-radius:999px;transition:.3s;
+    background:radial-gradient(ellipse at 50% 42%, #211f1a, #131109);
+    border:2px solid #2b2620;
+  }
+  .ptable .seat{
+    position:absolute;width:6px;height:6px;border-radius:50%;
+    background:transparent;border:1px solid rgba(244,239,230,.30);transition:.2s;
+  }
+  .ptable .seat.on{background:var(--cream);border-color:var(--cream);box-shadow:0 0 5px rgba(244,239,230,.6)}
+  /* full = green light */
+  .tbl.full{border-color:#1f8a48}
+  .tbl.full .ptable{background:radial-gradient(ellipse at 50% 42%, #2eb060, #147a3a);border-color:#0f5a2c;box-shadow:0 0 18px -3px rgba(39,168,90,.65)}
+  /* filling = red light */
+  .tbl.partial{border-color:var(--red)}
+  .tbl.partial .ptable{background:radial-gradient(ellipse at 50% 42%, #d5293a, #9d1523);border-color:#7a1019;box-shadow:0 0 15px -3px rgba(200,29,46,.6)}
+  /* empty = black light */
+  .tbl.empty .ptable{background:radial-gradient(ellipse at 50% 42%, #211f1a, #0c0b07)}
+  .tstatus{font-size:11px;font-weight:800;letter-spacing:.02em;line-height:1;text-align:center;min-height:14px}
+  .tbl.full .tstatus{font-size:16px;color:var(--green)}
+  .tbl.partial .tstatus{color:var(--red)}
+  .tbl.empty .tstatus{color:var(--ash);font-weight:700}
+  @media(max-width:620px){.tables{grid-template-columns:repeat(3,1fr)}}
 
   .control-panel{
     background:linear-gradient(180deg,var(--white),var(--paper));
@@ -151,6 +165,8 @@
   .seg.plat{background:#26221e;flex:25;color:#e9e3d9}
   .split-note{margin-top:20px;color:var(--ink);font-size:16px;font-weight:500}
   .split-note b{color:var(--red)}
+  .levelup{margin-top:22px;max-width:760px;background:linear-gradient(90deg,rgba(31,138,72,.10),transparent);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:12px;padding:18px 22px;font-size:16px;color:var(--ink);font-weight:500}
+  .levelup b{color:var(--green)}
 
   /* ---------- PROOF ---------- */
   .proof{border-top:1px solid var(--line-soft)}
@@ -212,8 +228,8 @@
     </div>
 
     <div class="eyebrow">A Poker-Centric Gig Economy</div>
-    <h1 class="headline">Buy a room.<br>Host the game.<br><em>Get paid.</em></h1>
-    <p class="sub">PokerSingularity is the gig economy for poker. No casino. No card room. No table to buy or dealer to hire. You get a room, you host the games, and <b>every seat that fills pays you</b> — the Host. Run it from your phone, on your nights, on your terms. <b>No car, no miles, no strangers, no boss.</b> Just your room, your table, your cut.</p>
+    <h1 class="headline">You Own The Room<br>You Host The Games<br><em>You Get Paid</em></h1>
+    <p class="sub">PokerSingularity is the <b>gig economy</b> for poker. No casino. No card room. No table to buy or dealer to hire. You secure a room, you host the games, and <b>every table you fill pays you</b> — the Host. Run it from your phone or desktop, on your nights, on your terms. <b>No car, no miles, no strangers, no boss.</b> Just your room, your table, your cut.</p>
 
     <div class="tenant-bar">
       <div>
@@ -286,6 +302,8 @@
       </div>
       <p class="split-note">You own the room. We run the game. Every filled table pays you your <b>12.5% — locked, forever, no renewals.</b></p>
     </div>
+
+    <div class="levelup">As you consistently fill your tables, you level up — and <b>earn even more on every full table you host.</b> The more you host, the bigger your cut grows.</div>
   </div>
 </section>
 
@@ -390,12 +408,19 @@ document.getElementById('ctaBtn').href =
   "?subject=" + encodeURIComponent("Claim a Room — " + TENANT.name) +
   "&body=" + encodeURIComponent("I want to claim my room and become a PokerSingularity Host. Please send next steps.");
 
-// --- build 10 tables ---
+// --- build 10 oval poker tables, 8 seats each ---
 const roomEl = document.getElementById('room');
+const SEAT_POS = [
+  {t:-4,l:14},{t:-4,l:33},{t:-4,l:52},   // top 3
+  {t:38,l:14},{t:38,l:33},{t:38,l:52},   // bottom 3
+  {t:17,l:-4},{t:17,l:70}                // left, right
+];
 for(let i=0;i<TOTAL_TABLES;i++){
   const t = document.createElement('div');
-  t.className = 'tbl';
-  t.innerHTML = '<div class="tnum">T'+(i+1)+'</div><div class="felt"></div><div class="cut">+$25</div>';
+  t.className = 'tbl empty';
+  let seats = '';
+  SEAT_POS.forEach(p => seats += '<span class="seat" style="top:'+p.t+'px;left:'+p.l+'px"></span>');
+  t.innerHTML = '<div class="tnum">T'+(i+1)+'</div><div class="ptable">'+seats+'</div><div class="tstatus">Empty</div>';
   roomEl.appendChild(t);
 }
 const allTables = [...document.querySelectorAll('.tbl')];
@@ -443,7 +468,16 @@ function render(){
   sWinners.textContent = money(completed * WINNER_TABLE);
   sPot.textContent     = money(completed * POT_TABLE);
 
-  allTables.forEach((t,i)=> t.classList.toggle('on', i < completed));
+  allTables.forEach((t,i)=>{
+    const f = Math.max(0, Math.min(SEATS_PER_TABLE, seats - i*SEATS_PER_TABLE));
+    const pips = t.querySelectorAll('.seat');
+    pips.forEach((s,j)=> s.classList.toggle('on', j < f));
+    const st = t.querySelector('.tstatus');
+    t.classList.remove('full','partial','empty');
+    if(f === SEATS_PER_TABLE){ t.classList.add('full'); st.textContent = '+$25'; }
+    else if(f > 0){ t.classList.add('partial'); st.textContent = (SEATS_PER_TABLE - f) + ' open'; }
+    else { t.classList.add('empty'); st.textContent = 'Empty'; }
+  });
 
   if(completed > lastCompleted){
     for(let c=lastCompleted; c<completed; c++){
